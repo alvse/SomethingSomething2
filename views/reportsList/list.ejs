@@ -1,0 +1,75 @@
+<%- include ../layouts/header.ejs %>
+<aside class="sidebar">
+    <div class="sideMenuInfo">
+        Please select a report below.
+    </div>
+    <table>
+    <% if(menu.length){
+        %>
+            
+        <%
+        for(var i = 0;i < menu.length;i++) { %>
+        <tr>
+            <td class="sideMenuHiddenInfo"><%=(i+1)%></td>
+            <% if(menu[i].ExternalLink==0) { %>
+                <td class="sideMenuButton" onClick="gotoReport('<%=menu[i].reportName%>')"><%=menu[i].reportName%></td>
+            <% } 
+            else { %>
+                <td class="sideMenuButton" onClick="openReport('<%=menu[i].reportURL%>')"><%=menu[i].reportName%></td>
+            <% } %>
+        </tr>
+        <% }
+        } else { %>
+        <tr>
+            <td colspan="6">No Menu Items</td>
+        </tr>
+        <% } %>
+    </table>    
+</aside>
+<main class="main">
+<div class="page-data">
+    <div class="data-btn">
+       <% if(data == 'No Data') { %>
+        No Data currently available for this report.
+       <% }
+       else { 
+        %>
+    <div class="preReport">
+       Search within report: <input id="dataTableSearch" type="text" onkeyup="filterReport()">
+    </div>
+        <table id="dataTable" cellspacing="0">
+        <thead>
+            <tr>
+                <th onClick="sortThis()" scope="col">DTE</th>
+                <th onClick="sortThis()" scope="col">MSA</th>
+                <th onClick="sortThis()" scope="col">AdjIncoming</th>
+                <th onClick="sortThis()" scope="col">Proc</th>
+                <th onClick="sortThis()" scope="col">WoH</th>
+                <th onClick="sortThis()" scope="col">CalcAHT</th>
+            </tr>
+        </thead>
+        <tbody id="reportContent">
+        <%
+        for(var i = 0; i < data.length; i++) {
+        %>
+            <tr>
+                <td class="sortable"><% var dte=new Date(data[i].DTE) %>
+                <%= dte.toLocaleDateString('en-UK')%>
+                </td>
+                <td class="sortable"><%= data[i].MSA%></td>
+                <td class="sortable" align="right"><%= data[i].AdjIncoming%></td>
+                <td class="sortable" align="right"><%= data[i].Proc%></td>
+                <td class="sortable" align="right"><%= data[i].WoH%></td>
+                <td class="sortable" align="right"><%= parseInt(data[i].CalcAHT)%></td>
+            </tr>
+        <% } %>
+    </tbody>
+        </table>
+       <% } %>
+    </div>
+    <div class="data-table">
+        
+    </div>
+</div>
+
+<%- include ../layouts/footer.ejs %>

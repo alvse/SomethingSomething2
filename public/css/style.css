@@ -1,0 +1,222 @@
+
+body {
+    background:#070f70;
+    font-family: Verdana;
+    margin: 0px;
+    color: #999999;
+}
+
+.wrapper{
+    min-height: 100vh;
+    background: #ccc;
+    display: flex;
+    flex-direction: column;
+  }
+
+header {
+    background: #070f70;
+    font-size: 20pt;
+    color: #FFFFFF;
+    height: 70px;
+    vertical-align: middle;
+}
+
+#title
+{
+    padding: 25px;
+    float: left;
+}
+
+.content {
+    flex: 1;
+    background: #999;
+    display: flex;
+    color: #000;
+  }
+  .columns{
+    display: flex;
+    width: 100vw;
+  }
+  .main{
+    flex: 3;
+    background: #eee;
+    padding-top: 30px;
+    color: #999;
+    padding-left: 5px;
+    font-size: 8pt;
+  }
+  .sidebar{
+    background: #ccc;
+     flex: 1;
+     flex-grow: 0;
+     flex-shrink: 0;
+     flex-basis: 300px;
+  }
+
+footer {
+    background: #FFFFFF;
+    height: 40px;
+}
+
+.logo {
+    height: 50px;
+    padding: 10px;   
+    float: left; 
+    padding-left: 20px;
+}
+
+.horizontalLine {
+    height: 5px;
+    background-color: #FFDAD4;
+    background: linear-gradient(90deg, rgba(7,15,112,1) 0%, rgba(9,9,121,1) 35%, rgba(255,218,212,1) 100%);
+
+}
+
+.subMenuBar {
+  background: #FFDAD4;
+  height: 30px;
+
+}
+
+
+.menuButtonContainer {
+  font-size: 8pt;
+  width: 100px; 
+  height: 30px;
+  margin: 0px;
+  text-align: center;
+  color:#070f70;
+  font-weight: 100;
+  text-decoration: none;
+  padding-top: 8px;
+}
+
+.menuButtonContainer {
+  text-decoration: none;
+  border-right: 1px solid #FFB9B2;
+  background-color: #FFC9C3;
+  
+}
+
+.menuButtonContainer:hover {
+  background-color: #FFB8B2;
+  cursor: pointer;
+}
+
+.sideMenuButton {
+  font-size: 10pt;
+  color: #FFFFFF;
+  background:#070f70;  
+  width: 300px;
+  height: 20px;
+  margin: 0px;
+  padding-left: 5px;
+}
+
+.sideMenuButton:hover {
+  background: #FFDAD4;
+  color: #070f70;
+  cursor: pointer;
+}
+
+.sideMenuHiddenInfo {
+  display: none;
+}
+
+.sideMenuInfo {
+  font-size: 8pt;
+  color: #444444;
+  height: 30px;
+  line-height: 30px;
+  padding-left: 5px;
+}
+
+.preReport {
+  padding-bottom: 10px;
+}
+
+#dataTable table {
+  border-spacing: 0px;
+  border-collapse:separate;
+}
+
+#dataTable td {
+  font-size: 8pt;
+  padding-right: 10px;
+  border-bottom: 1px solid #DDDDDD;
+}
+
+
+
+#dataTable th {
+  background-color: #070f70;
+  color: #ffffff;
+  font-size: 8pt;
+  height: 16px;
+  padding-right: 10px; padding-left: 10px;
+  min-width: 5vw;
+  cursor: pointer;
+}
+
+
+.homePageButton {
+  border: 0.5vh solid #DDDDDD;
+  border-radius: 1vh;
+  height: 10vh;
+  width: 20vh;
+  color: #070f70;
+  font-weight: 500;
+  font-size: 1.5vh;
+  margin: 1vw;
+  float: left;
+  line-height: 10vh;
+  vertical-align: middle;
+  text-align: center;
+  background: rgb(255,149,144);
+  background: linear-gradient(127deg, rgba(255,149,144,1) 0%, rgba(255,166,161,1) 20%, rgba(255,218,212,1) 100%);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  cursor: pointer;
+}
+
+.homePageButton:hover {
+  background: rgb(255,144,144);
+background: linear-gradient(127deg, rgba(255,144,144,1) 0%, rgba(255,196,161,1) 20%, rgba(255,253,212,1) 100%);
+}
+
+#Konamicontainer{
+  width:0px;
+  overflow-x:hidden;
+  display: none;
+  background-image: url('/../images/konami.png');
+  background-repeat: no-repeat;
+  color:white;
+  height: 500px;
+  width: 500px;
+}
+
+@keyframes slide-from-left {
+  from {
+    left: 0%;
+    transform: translateX(-50%);
+  }
+  to {
+    left: 120%;
+    transform: translateX(-50%);
+  }
+}
+.element {
+  position: absolute;
+  left: 0%;
+  transform: translateX(-50%);
+  display: none;
+}
+.hide-to-right {
+  left: 100%;
+  transform: translateX(-50%);
+  display: block;
+}
+.slide-in {
+  display: block;
+  animation-name: slide-from-left;
+  animation-duration: 8s;
+}

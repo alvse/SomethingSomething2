@@ -1,0 +1,33 @@
+<%- include ../layouts/header.ejs %>
+<aside class="sidebar">
+    <table>
+    
+    </table>    
+</aside>
+<main class="main">
+<div class="page-data">
+    <form method="post" action="/caseReport/edit/<%=data[0].id%>">
+        <table cellpadding="11">
+            <tr>
+                <td class="label">Caller Name</td>
+                <td><input type="text" name="CallerName" value="<%=data[0].CallerName%>" required /></td>
+            </tr>
+            <tr>
+                <td class="label">Issue</td>
+                <td><textarea name="Issue" required cols="30" rows="5"><%=data[0].Issue%></textarea></td>
+            </tr>
+            <tr>
+                <td class="label">Solution</td>
+                <td><textarea name="Solution" required cols="30" rows="5"><%=data[0].Solution%></textarea></td>
+            </tr>
+            <tr>
+                <td class="label"></td>
+                <td>
+                    <button type="submit">Save</button>
+                    <button type="button" onClick="cancelAdd()">Cancel</button>
+                </td>
+            </tr>
+        </table>
+    </form> 
+</div>
+<%- include ../layouts/footer.ejs %>

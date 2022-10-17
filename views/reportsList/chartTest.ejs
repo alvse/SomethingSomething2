@@ -1,0 +1,121 @@
+<%- include ../layouts/header.ejs %>
+<aside class="sidebar">
+    <div class="sideMenuInfo">
+        Please select a report below.
+    </div>
+    <table>
+        <% if(menu.length){
+            %>
+                
+            <%
+            for(var i = 0;i < menu.length;i++) { %>
+            <tr>
+                <td class="sideMenuHiddenInfo"><%=(i+1)%></td>
+                <% if(menu[i].ExternalLink==0) { %>
+                    <td class="sideMenuButton" onClick="gotoReport('<%=menu[i].reportName%>')"><%=menu[i].reportName%></td>
+                <% } 
+                else { %>
+                    <td class="sideMenuButton" onClick="openReport('<%=menu[i].reportURL%>')"><%=menu[i].reportName%></td>
+                <% } %>
+            </tr>
+            <% }
+            } else { %>
+            <tr>
+                <td colspan="6">No Menu Items</td>
+            </tr>
+            <% } %>
+        </table>   
+</aside>
+<main class="main">
+<div class="page-data">
+    <div class="preReport">
+        <form>
+            <input type="hidden" name="reportName" value="Chart Test"/>
+            Select MSA: <select id="msa" name="msa">
+            </select> <button type="button" name="sumbitMSA" id="submitMSA" onclick="submit()">Go</button>
+        </form>
+        
+     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <div style="width: 80%; height: 80%">
+    <canvas id="myChart"></canvas>
+    <script>
+
+    var jsonfile = {
+        "jsonarray": <%-data%>
+    };
+
+
+    var labels = jsonfile.jsonarray.map(function(e) {
+        return e.DTE;
+    });
+    
+    for (var i=0; i < labels.length; i++) {
+        var tempDTE = new Date(labels[i]);
+        labels[i] = tempDTE.toLocaleDateString('en-UK');
+    }
+    
+
+    var lineAdata = jsonfile.jsonarray.map(function(e) {
+        return e.Proc;
+    });
+
+
+    var lineBdata = jsonfile.jsonarray.map(function(e) {
+        return e.WoH;
+    });
+    
+    var lineCdata = jsonfile.jsonarray.map(function(e) {
+        return e.AdjIncoming;
+    });
+
+    var lineDdata = jsonfile.jsonarray.map(function(e) {
+        return e.CalcAHT;
+    });
+
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Adj Incoming',
+                data: lineCdata,
+                borderColor: 'rgba(255, 99, 132, 0.8)',
+                backgroundColor: 'rgba(255, 99, 132, 0.8)',
+            },
+            {
+                label: 'Proc',
+                data: lineAdata,
+                borderColor: 'rgba(54,162,135,0.8)',
+                backgroundColor: 'rgba(54,162,135,0.8)',
+            },
+            {
+                label: 'WoH',
+                data: lineBdata,
+                borderColor: 'rgba(255,206,86,0.8)',
+                backgroundColor: 'rgba(255,206,86,0.8)',
+            },
+            {
+                label: 'Calc AHT',
+                data: lineDdata,
+                borderColor: 'rgba(75,192,192,0.8)',
+                backgroundColor: 'rgba(75,192,192,0.8)',
+            },
+        ]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: '<%=chartTitle%>'
+                }
+            }
+        }
+    });
+
+    </script>
+    </div>
+</div>
+
+<%- include ../layouts/footer.ejs %>
